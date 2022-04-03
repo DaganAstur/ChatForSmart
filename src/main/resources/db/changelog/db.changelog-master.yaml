@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: David Sanchez
+      changes:
+        - sqlFile:
+            dbms: mysql
+            path: scripts/01-test.sql
+            relativeToChangelogFile: true
+            sriptComments: true
