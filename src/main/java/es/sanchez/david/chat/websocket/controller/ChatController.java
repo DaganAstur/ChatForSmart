@@ -1,6 +1,6 @@
-package es.sanchez.david.chat.controller;
+package es.sanchez.david.chat.websocket.controller;
 
-import es.sanchez.david.chat.model.ChatMessage;
+import es.sanchez.david.chat.websocket.model.ChatMessage;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;

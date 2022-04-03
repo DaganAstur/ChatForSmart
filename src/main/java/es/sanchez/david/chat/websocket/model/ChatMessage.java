@@ -1,4 +1,4 @@
-package es.sanchez.david.chat.model;
+package es.sanchez.david.chat.websocket.model;
 
 public class ChatMessage {
     private MessageType messageType;

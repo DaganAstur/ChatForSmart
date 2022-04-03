@@ -1,7 +1,7 @@
-package es.sanchez.david.chat.controller;
+package es.sanchez.david.chat.websocket.controller;
 
-import es.sanchez.david.chat.model.ChatMessage;
-import es.sanchez.david.chat.model.MessageType;
+import es.sanchez.david.chat.websocket.model.ChatMessage;
+import es.sanchez.david.chat.websocket.model.MessageType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,26 +28,25 @@ public class WebSocketEventListener {
 
     @EventListener
     public void handleWebSocketConnectListener(final SessionConnectedEvent event) {
-        LOGGER.info("Bing bong bing. Connected");
+        LOGGER.info("Connected");
     }
 
     @EventListener
     public void handleWebSocketConnectListener(final SessionConnectEvent event) {
-        LOGGER.info("Bing bong bing. Connect");
+        LOGGER.info("Connect");
     }
 
     @EventListener
     public void handleWebSocketConnectListener(final SessionSubscribeEvent event) {
-        LOGGER.info("Bing bong bing. Subscribe");
+        LOGGER.info("Subscribe");
     }
 
 
-
     @EventListener
-    public void handleWebSocketDisconnectListener(final SessionDisconnectEvent event){
+    public void handleWebSocketDisconnectListener(final SessionDisconnectEvent event) {
         final StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
         final String userName = (String) headerAccessor.getSessionAttributes().get("username");
-        final ChatMessage chatMessage =new ChatMessage(MessageType.DISCONNECT, null, userName, null);
+        final ChatMessage chatMessage = new ChatMessage(MessageType.DISCONNECT, "Disconnected", userName, null);
 
         sendingOperations.convertAndSend("/topic/public", chatMessage);
 
