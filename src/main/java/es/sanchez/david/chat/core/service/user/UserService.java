@@ -6,5 +6,6 @@ public interface UserService {
     User findUser(String username);
 
     boolean isValidUser(String username, String password);
+
     User addUser(User user);
 }

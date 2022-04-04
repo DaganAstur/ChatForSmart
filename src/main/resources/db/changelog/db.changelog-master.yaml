@@ -5,6 +5,6 @@ databaseChangeLog:
       changes:
         - sqlFile:
             dbms: mysql
-            path: scripts/01-test.sql
+            path: scripts/01-init.sql
             relativeToChangelogFile: true
             sriptComments: true

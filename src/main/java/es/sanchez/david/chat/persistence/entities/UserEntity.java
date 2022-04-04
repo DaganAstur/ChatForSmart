@@ -1,6 +1,7 @@
 package es.sanchez.david.chat.persistence.entities;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "user")
@@ -8,6 +9,9 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "created_on", nullable = false)
+    private LocalDateTime createdOn;
 
     @Column(name = "username", unique = true)
     private String username;
@@ -22,6 +26,16 @@ public class UserEntity {
     private String password;
 
     public UserEntity() {
+        super();
+    }
+
+    public UserEntity(Long id, LocalDateTime createdOn, String username, String firstName, String lastName, String password) {
+        this.id = id;
+        this.createdOn = createdOn;
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
     }
 
     public UserEntity(Long id, String username, String firstName, String lastName, String password) {
@@ -30,10 +44,7 @@ public class UserEntity {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-    }
-
-    public Long getId() {
-        return id;
+        this.createdOn = LocalDateTime.now();
     }
 
     public String getUsername() {
@@ -55,5 +66,12 @@ public class UserEntity {
         return password;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
 }
 

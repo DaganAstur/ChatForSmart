@@ -1,4 +1,4 @@
-package es.sanchez.david.chat.persistence;
+package es.sanchez.david.chat.persistence.repositories;
 
 import es.sanchez.david.chat.core.model.User;
 

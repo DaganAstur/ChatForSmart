@@ -1,8 +1,7 @@
 package es.sanchez.david.chat.core.service.user;
 
 import es.sanchez.david.chat.core.model.User;
-import es.sanchez.david.chat.persistence.UserRepository;
-import org.apache.commons.codec.digest.DigestUtils;
+import es.sanchez.david.chat.persistence.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
 import static es.sanchez.david.chat.core.util.PasswordUtil.hashPassword;
@@ -24,7 +23,6 @@ public class UserServiceImpl implements UserService {
     public boolean isValidUser(String username, String password) {
         User user = findUser(username);
         return hashPassword(password).equals(user.getPassword());
-
     }
 
     @Override
