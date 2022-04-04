@@ -1,5 +1,7 @@
-package es.sanchez.david.chat.security.config;
+package es.sanchez.david.chat.api.controllers;
 
+import es.sanchez.david.chat.core.service.user.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,18 +12,22 @@ import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.Base64;
 
+@CrossOrigin
 @RestController
 public class UserController {
-    @RequestMapping("/login")
-    @CrossOrigin(origins = "http://localhost:4200")
-    public boolean login(@RequestBody SecurityProperties.User user) {
-        // TODO validate user has access
-        return
-                user.getName().equals("user") && user.getPassword().equals("password");
+    private UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
-    @RequestMapping("/user")
-    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping("/login")
+    public boolean login(@RequestBody SecurityProperties.User user) {
+        return userService.isValidUser(user.getName(), user.getPassword());
+    }
+
+    @RequestMapping(value = "/user")
     public Principal user(HttpServletRequest request) {
         String authToken = request.getHeader("Authorization")
                 .substring("Basic".length()).trim();
