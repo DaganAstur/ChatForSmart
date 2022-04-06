@@ -1,5 +1,7 @@
 package es.sanchez.david.chat.persistence.entities;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -10,10 +12,11 @@ public class RoomEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @Column(name = "created_on", nullable = false)
     private LocalDateTime createdOn;
 
-
+    @NotNull
     @Column(name = "name", unique = true)
     private String name;
 

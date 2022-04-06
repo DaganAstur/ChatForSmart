@@ -8,3 +8,12 @@ databaseChangeLog:
             path: scripts/01-init.sql
             relativeToChangelogFile: true
             sriptComments: true
+  - changeSet:
+      id: 2
+      author: David Sanchez
+      changes:
+        - sqlFile:
+            dbms: mysql
+            path: scripts/02-messages.sql
+            relativeToChangelogFile: true
+            sriptComments: true
