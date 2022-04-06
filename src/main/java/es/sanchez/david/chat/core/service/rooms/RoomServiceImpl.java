@@ -1,4 +1,4 @@
-package es.sanchez.david.chat.core.service.user;
+package es.sanchez.david.chat.core.service.rooms;
 
 import es.sanchez.david.chat.core.model.Room;
 import es.sanchez.david.chat.persistence.repositories.RoomRepository;
@@ -17,5 +17,10 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public List<Room> getAll() {
         return roomRepository.getAll();
+    }
+
+    @Override
+    public Room addRoom(Room room){
+        return roomRepository.addRoom(room);
     }
 }

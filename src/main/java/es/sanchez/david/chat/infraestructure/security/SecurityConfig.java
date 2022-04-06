@@ -1,4 +1,4 @@
-package es.sanchez.david.chat.security.config;
+package es.sanchez.david.chat.infraestructure.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

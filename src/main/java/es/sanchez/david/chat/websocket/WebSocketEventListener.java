@@ -2,6 +2,7 @@ package es.sanchez.david.chat.websocket.controller;
 
 import es.sanchez.david.chat.websocket.model.ChatMessage;
 import es.sanchez.david.chat.websocket.model.MessageType;
+import es.sanchez.david.chat.websocket.model.enums.DestinationType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import org.springframework.web.socket.messaging.SessionConnectEvent;
 import org.springframework.web.socket.messaging.SessionConnectedEvent;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 import org.springframework.web.socket.messaging.SessionSubscribeEvent;
+
+import java.time.LocalDateTime;
 
 
 @Component
@@ -46,7 +49,7 @@ public class WebSocketEventListener {
     public void handleWebSocketDisconnectListener(final SessionDisconnectEvent event) {
         final StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
         final String userName = (String) headerAccessor.getSessionAttributes().get("username");
-        final ChatMessage chatMessage = new ChatMessage(MessageType.DISCONNECT, "Disconnected", userName, null);
+        final ChatMessage chatMessage = new ChatMessage(MessageType.DISCONNECT, "Disconnected", userName, LocalDateTime.now().toString(), DestinationType.ROOM, "0");
 
         sendingOperations.convertAndSend("/topic/public", chatMessage);
 
