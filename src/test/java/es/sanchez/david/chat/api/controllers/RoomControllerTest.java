@@ -31,7 +31,7 @@ class RoomControllerTest {
     @WithMockUser()
     @Test
     public void givenAuthRequestOnPrivateService_shouldSucceedWith200() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/rooms").contentType(MediaType.APPLICATION_JSON))
+        mvc.perform(MockMvcRequestBuilders.get("/api/rooms").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 

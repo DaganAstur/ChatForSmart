@@ -10,22 +10,22 @@ import java.time.LocalDateTime;
 
 @Entity
 @DiscriminatorValue("ROOM")
-public class RoomMessage extends MessageEntity{
+public class RoomMessageEntity extends MessageEntity{
     @ManyToOne
     @NotNull
     @JoinColumn(name = "room_id")
-    private RoomEntity roomEntity;
+    private RoomEntity room;
 
-    public RoomMessage(RoomEntity roomEntity) {
-        this.roomEntity = roomEntity;
+    public RoomMessageEntity(RoomEntity roomEntity) {
+        this.room = roomEntity;
     }
 
-    public RoomMessage(Long id, LocalDateTime createdOn, String text, UserEntity senderUser, String messageType, RoomEntity roomEntity) {
+    public RoomMessageEntity(Long id, LocalDateTime createdOn, String text, UserEntity senderUser, String messageType, RoomEntity roomEntity) {
         super(id, createdOn, text, senderUser, messageType);
-        this.roomEntity = roomEntity;
+        this.room = roomEntity;
     }
 
-    public RoomEntity getRoomEntity() {
-        return roomEntity;
+    public RoomEntity getRoom() {
+        return room;
     }
 }

@@ -8,4 +8,6 @@ public interface RoomService {
     List<Room> getAll();
 
     Room addRoom(Room room);
+
+    Room findByName(String name);
 }

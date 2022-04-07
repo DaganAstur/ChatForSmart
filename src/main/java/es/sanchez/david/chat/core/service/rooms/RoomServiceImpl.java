@@ -23,4 +23,9 @@ public class RoomServiceImpl implements RoomService {
     public Room addRoom(Room room){
         return roomRepository.addRoom(room);
     }
+
+    @Override
+    public Room findByName(String name) {
+        return roomRepository.findByName(name);
+    }
 }

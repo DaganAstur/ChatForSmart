@@ -1,4 +1,4 @@
-package es.sanchez.david.chat.websocket.controller;
+package es.sanchez.david.chat.websocket.controllers;
 
 import es.sanchez.david.chat.websocket.model.ChatMessage;
 import es.sanchez.david.chat.websocket.model.MessageType;

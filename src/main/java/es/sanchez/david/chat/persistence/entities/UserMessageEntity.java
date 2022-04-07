@@ -10,17 +10,17 @@ import java.time.LocalDateTime;
 
 @Entity
 @DiscriminatorValue("USER")
-public class UserMessage extends MessageEntity{
+public class UserMessageEntity extends MessageEntity{
     @ManyToOne
     @NotNull
     @JoinColumn(name = "receiver_user_id")
     private UserEntity receiverUser;
 
-    public UserMessage(UserEntity receiverUser) {
+    public UserMessageEntity(UserEntity receiverUser) {
         this.receiverUser = receiverUser;
     }
 
-    public UserMessage(Long id, LocalDateTime createdOn, String text, UserEntity senderUser, String messageType, UserEntity receiverUser) {
+    public UserMessageEntity(Long id, LocalDateTime createdOn, String text, UserEntity senderUser, String messageType, UserEntity receiverUser) {
         super(id, createdOn, text, senderUser, messageType);
         this.receiverUser = receiverUser;
     }

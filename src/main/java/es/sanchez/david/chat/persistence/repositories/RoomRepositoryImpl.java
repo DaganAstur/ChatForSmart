@@ -23,6 +23,11 @@ public class RoomRepositoryImpl implements RoomRepository {
     }
 
     @Override
+    public Room findByName(String name) {
+        return roomJpaRepository.findByName(name).map(RoomMapper::map).orElseThrow(() -> new NotfoundException(String.format("Room with name %s not found", name)));
+    }
+
+    @Override
     public Room addRoom(Room room) {
         return RoomMapper.map(roomJpaRepository.save(RoomMapper.map(room)));
     }
