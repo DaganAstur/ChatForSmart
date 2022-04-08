@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.Base64;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @CrossOrigin
 @RestController
@@ -33,5 +35,10 @@ public class UserController {
                 .substring("Basic".length()).trim();
         return () ->  new String(Base64.getDecoder()
                 .decode(authToken)).split(":")[0];
+    }
+
+    @RequestMapping(value = "/api/users")
+    public List<String> getUsers(){
+        return userService.getAll().stream().map(user -> user.getUsername()).collect(Collectors.toList());
     }
 }

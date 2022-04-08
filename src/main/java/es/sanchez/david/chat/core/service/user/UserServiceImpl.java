@@ -4,6 +4,8 @@ import es.sanchez.david.chat.core.model.User;
 import es.sanchez.david.chat.persistence.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import static es.sanchez.david.chat.core.util.PasswordUtil.hashPassword;
 
 @Service
@@ -28,5 +30,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User addUser(User user) {
         return userRepository.addUser(user);
+    }
+
+    @Override
+    public List<User> getAll() {
+        return userRepository.getAll();
     }
 }

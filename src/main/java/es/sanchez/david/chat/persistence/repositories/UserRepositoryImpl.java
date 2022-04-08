@@ -6,6 +6,9 @@ import es.sanchez.david.chat.persistence.mapper.UserMapper;
 import es.sanchez.david.chat.persistence.repositories.jpa.UserJpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Repository
 public class UserRepositoryImpl implements UserRepository {
     private UserJpaRepository userJpaRepository;
@@ -22,5 +25,10 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public User addUser(User user) {
         return UserMapper.map(userJpaRepository.save(UserMapper.map(user)));
+    }
+
+    @Override
+    public List<User> getAll() {
+        return userJpaRepository.findAll().stream().map(UserMapper::map).collect(Collectors.toList());
     }
 }
